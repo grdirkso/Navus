@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Navus</string>
+
+    <string-array name="buildings">
+        <item>Bell Engineering</item>
+        <item>J.B. Hunt</item>
+        <item>Science and Technology</item>
+    </string-array>
     <string name="title_activity_maps">Map</string>
 </resources>
