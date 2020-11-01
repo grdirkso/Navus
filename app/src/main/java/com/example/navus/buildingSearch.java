@@ -23,3 +23,9 @@ public class buildingSearch extends AppCompatActivity {
         buildingPicker.setAdapter(buildings);
     }
 }
+
+
+
+
+// if (id = 0)
+//    "https://maps.googleapis.com/maps/api/directions/json?origin=" + CurrentLocation + "&destination=" + Location0 + "&key=API_KEY"
