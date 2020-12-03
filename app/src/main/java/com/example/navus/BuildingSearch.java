@@ -61,10 +61,10 @@ public class BuildingSearch extends AppCompatActivity {
         getDirections.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                System.out.println(building);
                 Intent intent = new Intent(BuildingSearch.this, MapsActivity.class);
                 intent.putExtra("building", building);
-                startActivityForResult(intent, selectedItem);
+                startActivity(intent);
             }
         });
     }
