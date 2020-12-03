@@ -2,9 +2,7 @@ package com.example.navus;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,10 +11,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
-public class buildingSearch extends AppCompatActivity {
+public class BuildingSearch extends AppCompatActivity {
 
-    private Object item = new Object();
-    private int selectedItem = 0;
+    public Object item = new Object();
+    public int selectedItem = 0;
+    private String building;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,20 +32,23 @@ public class buildingSearch extends AppCompatActivity {
         );
         buildings.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         buildingPicker.setAdapter(buildings);
-
         buildingPicker.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 item = adapterView.getItemAtPosition(i);
 
                 if(item == adapterView.getItemAtPosition(0)) {
                     selectedItem = 0;
+                    building = "bell";
                     buildingImg.setImageResource(R.drawable.bell);
                 } else if(item == adapterView.getItemAtPosition(1)) {
                     selectedItem = 1;
+                    building = "JBH";
                     buildingImg.setImageResource(R.drawable.jbht);
                 } else if (item == adapterView.getItemAtPosition(2)){
                     selectedItem = 2;
+                    building = "white";
                     buildingImg.setImageResource(R.drawable.sen);
                 }
             }
@@ -59,8 +62,8 @@ public class buildingSearch extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(buildingSearch.this, MapsActivity.class);
-                intent.putExtra("building", selectedItem);
+                Intent intent = new Intent(BuildingSearch.this, MapsActivity.class);
+                intent.putExtra("building", building);
                 startActivityForResult(intent, selectedItem);
             }
         });
