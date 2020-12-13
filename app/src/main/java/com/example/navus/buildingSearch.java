@@ -76,15 +76,15 @@ public class BuildingSearch extends AppCompatActivity implements Callback<List<C
         getDirections.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "Retrieving Path",
+                        Toast.LENGTH_SHORT).show();
                 try {
                     sendClassRoom();
                 } catch (IOException e) {
+                    Toast.makeText(getApplicationContext(), "Path Not Found",
+                            Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
-                Intent intent = new Intent(BuildingSearch.this, MapsActivity.class);
-                intent.putExtra("building", building);
-                intent.putExtra("room", room);
-                startActivity(intent);
             }
         });
     }
@@ -146,6 +146,8 @@ public class BuildingSearch extends AppCompatActivity implements Callback<List<C
             buildingAPI = retrofit.create(BuildingAPI.class);
             sendPost();
         } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Path Not Found",
+                    Toast.LENGTH_SHORT).show();
             System.out.println(e);
         }
 
@@ -178,11 +180,14 @@ public class BuildingSearch extends AppCompatActivity implements Callback<List<C
 
             }
 
-            Intent intent = new Intent(this, ClassPath.class);
-            intent.putExtra("json", myPostList);
+            Intent intent = new Intent(BuildingSearch.this, MapsActivity.class);
             intent.putExtra("building", building);
+            intent.putExtra("json", myPostList);
+            intent.putExtra("room", room);
             startActivity(intent);
         } else {
+            Toast.makeText(getApplicationContext(), "Path Not Found",
+                    Toast.LENGTH_SHORT).show();
             System.out.println(response.errorBody());
         }
         Debug.stopMethodTracing();
@@ -190,6 +195,8 @@ public class BuildingSearch extends AppCompatActivity implements Callback<List<C
 
     @Override
     public void onFailure(Call<List<ClassRoom>> call, Throwable t) {
+        Toast.makeText(getApplicationContext(), "Path Not Found",
+                Toast.LENGTH_SHORT).show();
         System.out.println("ERROR!!! Failed");
         t.printStackTrace();
     }
