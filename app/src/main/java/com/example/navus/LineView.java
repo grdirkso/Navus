@@ -44,19 +44,19 @@ public class LineView extends View {
         double endY;
         for(int i = 0; i < classPath.size() - 1; i++) {
 
-            x = 970;
-            y = 40;
+            x = 1090;
+            y = 63;
 
-            startX = x-(classPath.get(i).getY()*1.381);
-            startY= (classPath.get(i).getX()*1.8587) - y;
-            endX = x-(classPath.get(i+1).getY()*1.381);
-            endY= (classPath.get(i+1).getX()*1.8587) - y;
+            Log.d("Path: ", classPath.get(i).getY() + " " + classPath.get(i).getX() + " " + classPath.get(i+1).getY() + " " + classPath.get(i+1).getX());
+            startX = x-(classPath.get(i).getY()*1.73);
+            startY= (classPath.get(i).getX()*1.73);
+            endX = x-(classPath.get(i+1).getY()*1.73);
+            endY= (classPath.get(i+1).getX()*1.73);
             Log.d("Path: ", startX + " " + startY + " " + endX + " " + endY);
 
 
 
             canvas.drawLine((float)startX, (float)startY, (float)endX, (float)endY, paint);
-//
 
         }
         super.onDraw(canvas);
